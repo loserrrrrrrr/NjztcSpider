@@ -10,6 +10,7 @@ url = 'http://www.njztc.com/emc_TaskWorkSd_list.jspx?count=15&mark=1'
 driver.get(url)
 
 move_body = driver.find_element_by_tag_name('body')
+result=[]
 
 for i in range(1,6):
     # 因为网站是动态读取信息需要页面下拉到一定页数才会显示全部信息。
@@ -18,7 +19,6 @@ for i in range(1,6):
     time.sleep(1)
 
 for list in driver.find_elements_by_class_name('znh_list'):
-    #通过class标签定位元素
+    print('--------------------------------------------')
     print(list.text)
-
 driver.quit()
