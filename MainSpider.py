@@ -10,15 +10,7 @@ driver.implicitly_wait(5)       #等待5秒页面加载完成
 url = 'http://njzy.njztc.com/find_taskWorkList.jspx'
 driver.get(url)
 
-move_body = driver.find_element_by_tag_name('body')
-
-for i in range(1,6):
-    # 因为网站是动态读取信息需要页面下拉到一定页数才会显示全部信息。
-    # 所以使用selenium的函数模拟按下PageDown键若干次
-    move_body.send_keys(Keys.PAGE_DOWN)
-    time.sleep(1)
-
-for li in driver.find_elements_by_class_name('znh_list'):
+for li in driver.find_elements_by_class_name('znh_list'):       #找到“class='znh_list'”的标签，获取文本信息
     inform_list = re.split('/|：|\n', li.text)   #多个分隔符
 
     '''
