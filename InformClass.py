@@ -1,7 +1,6 @@
 import datetime
 import jieba
 
-
 def str2date(dt):       #将xxxx-xx-xx的日期字符串转化成date类型
     date = datetime.datetime.strptime(dt, "%Y-%m-%d")
     date = datetime.date(date.year, date.month, date.day)
