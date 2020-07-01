@@ -22,6 +22,15 @@ def downloadPage(url):
             print(url + '【下载页面失败】')
             return ''
 
+def getPageSize(url):
+    # 获取表格的分页总数
+    content = downloadPage(url)
+    soup = BeautifulSoup(content, 'html.parser')
+    list = soup.find('div', attrs={"id": "id_page_def"}).findAll("a")
+    pageNum = int(list[-1].attrs['page'])
+    return pageNum
+
 if __name__=='__main__':
     url='http://dudu.nongjibang.com/'
     downloadPage(url)
+    getPageSize(url)
