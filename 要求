@@ -4,7 +4,7 @@
 每个文件下建立一个web_spider函数
 （def web_spider(url):）
 
-要求：能分别对”农机作业“网和”嘟嘟作业“网进行爬取。
+要求：能分别对“农机作业”网（http://njzy.njztc.com/find_taskWorkList.jspx）和“嘟嘟作业”网(http://dudu.nongjibang.com/?p=1)进行爬取。
 提炼爬虫得到的文本信息，如作业内容、作业面积、价格（具体看SupplyInform类中的内容）
 
 return形式：
