@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import InformClass
 
 def downloadPage(url):
     # 下载页面方法，用requests模块，使用代理，避免重复请求次数过多；多开几个进程，加快下载速度
@@ -12,16 +13,7 @@ def downloadPage(url):
         data = requests.get(url, headers=headers).text
         return data
     except BaseException:
-        if(url in errordic):
-            errordic[url] = errordic[url]+1
-        else:
-            errordic[url] =1
-        if(errordic[url]<4):
-            print(url + '【第】'+str(errordic[url])+'次重试】')
-            return downloadPage(url)
-        else:
-            print(url + '【下载页面失败】')
-            return ''
+        print('error')
 
 def getPageSize(url):
     # 获取表格的分页总数
@@ -35,17 +27,28 @@ def getData(url):
     # 获取表格中的数据，找到有用的几个信息，品种、面积、单价、时间、地点
     content = downloadPage(url)
     soup = BeautifulSoup(content, 'html.parser')
-    list = soup.findAll("div",attrs={"class":"list_box"})
+    tag_list = soup.findAll("div",attrs={"class":"list_box"})
     pageDatas = []
     res = {}
 
-    for i in list:
-        h1s = i.find("div",attrs={"class":"js_right"}).find("div",attrs={"class":"list_name"}).findAll("h1")
-        dts = i.find("div",attrs={"class":"js_right"}).find("dl").findAll("dt")
-        pageDatas.append(h1s)
-        pageDatas.append(dts)
-        print(pageDatas)
-        #res[dts[0].get_text()] = dts[1].get_text()
+    for i in tag_list:
+        inf_str = i.text.replace('\r',' ').replace('\n',' ').replace('\t','')\
+                         .replace('立即抢单','').replace('作业时间：','').replace('至','')\
+                         .replace('作业地点：','').replace('作业热线：','').replace('一亩','')\
+                         .split(' ')
+        #用replace函数替换掉文本中不需要的内容
+        inf_str = list(filter(None,inf_str))        #去掉列表中的空字符
+        name = inf_str.pop(0)       #移动“姓名”属性
+        inf_str.insert(5,name)
+        try:
+            inf_str[7],inf_str[6] = inf_str[6],inf_str[7]      #调换属性顺序，顺便验证参数是否完整
+        except IndexError:
+             continue
+        try:
+            inf = InformClass.SupplyInform(inf_str)     #将得到的字符串列表导入SupplyInform类
+        except ValueError:
+            continue
+        pageDatas.append(inf)       #添加SupplyInform类对象，得到对象列表
     return pageDatas
 
 def downloadData(url):
@@ -58,11 +61,10 @@ def downloadData(url):
         durl = url + "?p=" + str(i + 1)
         pageDatas = getData(durl)
         Data.extend(pageDatas)
-        #print(Data)
-    return 'success'
 
-if __name__=='__main__':
-    url='http://dudu.nongjibang.com/'
+    return Data
+
+def web_spider(url):
     downloadPage(url)
-    getPageSize(url)
-    downloadData(url)
+    return downloadData(url)
+
