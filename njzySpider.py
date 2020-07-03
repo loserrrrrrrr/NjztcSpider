@@ -18,7 +18,6 @@ def web_spider(url):
     try:
         driver = webdriver.Chrome(chrome_options=chrome_options)  # 这里选择的是Chrome浏览器驱动chromedriver
         driver.implicitly_wait(5)  # 设置等待5秒页面加载完成
-        print("正在连接"+url)
         driver.get(url)
 
         for li in driver.find_elements_by_class_name('znh_list'):  # 找到“class='znh_list'”的标签，获取文本信息
