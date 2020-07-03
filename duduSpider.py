@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import InformClass
 
-
 # http://dudu.nongjibang.com/?p=1
 
 def download_page(url):
@@ -15,7 +14,6 @@ def download_page(url):
                       'Chrome/76.0.3809.87 Safari/537.36'}
 
     try:
-        print("正在连接"+url)
         data = requests.get(url, headers=headers).text
         return data
     except BaseException as args:
@@ -37,8 +35,8 @@ def get_data(url):
     soup = BeautifulSoup(content, 'html.parser')
     tag_list = soup.findAll("div", attrs={"class": "list_box"})
     pageDatas = []
-
     for i in tag_list:
+
         inf_str = i.text.replace('\r', ' ').replace('\n', ' ').replace('\t', '') \
             .replace('立即抢单', '').replace('作业时间：', '').replace('至', '') \
             .replace('作业地点：', '').replace('作业热线：', '').replace('一亩', '') \
@@ -61,7 +59,6 @@ def download_data(url):
     # 获取所有数据
     data = []
     pageSize = get_page_size(url)
-
     for i in range(pageSize):
         durl = url + "?p=" + str(i + 1)
         pageDatas = get_data(durl)
