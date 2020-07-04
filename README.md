@@ -1,9 +1,13 @@
 # NjztcSpider
 农机信息平台爬虫
 
-全国农机化信息服务平台：http://www.njztc.com/
+目前整合了“农机帮”和“农机作业”两个网站的需求信息
 
-爬取页面：http://www.njztc.com/emc_TaskWorkSd_list.jspx?count=15&mark=1
+嘟嘟作业_农机帮 http://dudu.nongjibang.com/?p=1
 
-Python语言编写的爬虫，目前十分粗糙，但是能用。
-后续想到啥再加上
+找农活 http://njzy.njztc.com/find_taskWorkList.jspx
+
+主函数运行UI.py
+
+注意：因为在njzySpider.py中用到了selenium库，没有配置可能无法运行
+      可参考https://blog.csdn.net/One_of_them/article/details/82560880
