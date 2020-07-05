@@ -39,7 +39,7 @@ if __name__=="__main__":
     import sys
 
     njzy_url = 'http://njzy.njztc.com/find_taskWorkList.jspx'
-    dudu_url = 'http://dudu.nongjibang.com/?p=1'
+    dudu_url = 'http://dudu.nongjibang.com'
     print('开始爬取' + njzy_url)
     # self.SpiderInform.setText("正在爬取" + njzy_url + "，请稍后")
     n_list = njzySpider.web_spider(njzy_url)  # 返回的是SupplyInform类的列表
