@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import InformClass
 
-# http://dudu.nongjibang.com/?p=1
+# http://dudu.nongjibang.com
 
 def download_page(url):
     # 下载页面方法，用requests模块，使用代理，避免重复请求次数过多；多开几个进程，加快下载速度
