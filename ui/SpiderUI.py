@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_NjztcSpider(object):
     def setupUi(self, NjztcSpider):
         NjztcSpider.setObjectName("NjztcSpider")
-        NjztcSpider.resize(1053, 454)
+        NjztcSpider.resize(1424, 454)
         NjztcSpider.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(NjztcSpider)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
@@ -33,7 +33,11 @@ class Ui_NjztcSpider(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.SupplyInform = QtWidgets.QTableView(NjztcSpider)
+        self.SupplyInform.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.SupplyInform.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
         self.SupplyInform.setObjectName("SupplyInform")
+        self.SupplyInform.horizontalHeader().setVisible(True)
+        self.SupplyInform.horizontalHeader().setCascadingSectionResizes(False)
         self.verticalLayout_2.addWidget(self.SupplyInform)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -57,7 +61,7 @@ class Ui_NjztcSpider(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.horizontalLayout_2.addLayout(self.verticalLayout_2)
         self.horizontalLayout_2.setStretch(0, 1)
-        self.horizontalLayout_2.setStretch(1, 3)
+        self.horizontalLayout_2.setStretch(1, 4)
         self.horizontalLayout_3.addLayout(self.horizontalLayout_2)
 
         self.retranslateUi(NjztcSpider)
