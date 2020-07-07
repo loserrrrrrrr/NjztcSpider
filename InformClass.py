@@ -10,8 +10,8 @@ class SupplyInform:
     informCount = 0
 
     type = ''  # 作业内容
-    area = ''  # 作业面积：xx亩
-    price = ''  # 价格
+    area = 0  # 作业面积：xx亩
+    price = 0  # 价格
     date_from = ''  # 起始时间
     date_to = ''  # 结束时间
     name = ''  # 发布人称呼
@@ -20,8 +20,8 @@ class SupplyInform:
 
     def __init__(self, inf_list):  # 初始函数
         self.type = inf_list[0]
-        self.area = inf_list[1]
-        self.price = inf_list[2]
+        self.area = int(inf_list[1].replace('亩',''))
+        self.price = int(inf_list[2].replace('元',''))
         self.date_from = str2date(inf_list[3])  # 输入字符串，转化为date类型
         self.date_to = str2date(inf_list[4])
         self.name = inf_list[5]
